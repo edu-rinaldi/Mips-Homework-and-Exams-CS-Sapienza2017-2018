@@ -1,6 +1,6 @@
 .data
 grid: .byte ' ':64
-coords: .space 3
+coords: .space 6
 .text
 .globl main
 
@@ -166,6 +166,7 @@ coords: .space 3
 	printChar('|')
 	printChar('\n')
 	.end_macro
+	
 
 .macro initGame(%mat)
 	#insert B
@@ -175,6 +176,10 @@ coords: .space 3
 	insertVal(%mat,3,4,'N')
 	insertVal(%mat,4,3,'N')
 	.end_macro
+	
+	
+	
+	
 
 #---------- END MACROS ----------
 
@@ -184,6 +189,7 @@ main:
 	
 	#initialize game
 	initGame(grid)
+	printMatrix(grid)
 	
 	#initialize vars
 	li $s0, 1	#exit condition
@@ -193,9 +199,13 @@ main:
 	
 	# read string in input
 	la $a0, coords
-	li $a1, 4
+	li $a1, 6
 	li $v0, 8
 	syscall
+	
+	#is stop?
+	lb $t0, coords
+	beq $t0, 'S', endGame
 	
 	# j = coords[0] - 97
 	lb $t0, coords($zero)
@@ -223,7 +233,8 @@ main:
 	 
 	
 	endGame:
-	
+	li $v0, 10
+	syscall
 	
 
 
