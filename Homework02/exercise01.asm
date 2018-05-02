@@ -320,11 +320,11 @@ checkRecursive:
 	li $s2, 1			#flag = True
 	insertValReg(grid,$a1,$a0,$a2)	#g[y][x] = p
 	insertValReg(grid,$t3,$t2,$a2)	#g[y+i][x+j] = p
-	li $v1, 1
+	li $v1, 1			#return true
 	jr $ra
 	
 	endCheckRecursive:
-		li $v1, 0
+		li $v1, 0		#return false
 		jr $ra
 	
 
