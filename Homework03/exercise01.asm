@@ -291,23 +291,22 @@ main:
 	j cicloLettura
 	
 	fineCicloLettura:
-	li $v1, 1
 	la $a0, vet
 	li $a1, 1
 	lw $s2, ($a0)
-	whileTrue:
-	beqz $v1, fineWhileTrue
 	jal funzRic1
+	printChar('\n')
+	beq $s2, 1, fineWhileTrue
+	la $a0, vet
+	whileFine:
+	lw $t7, 8($a0)
+	beq $t7, -666, fineWhileTrue
 	jal funzRic2
+	jal funzRic1
 	printChar('\n')
 	la $a0, vet
-	beq $s2, 1, fineWhileTrue
-	lw $t7, 8($a0)
-	beq $t7, -666, fineWhileTrue2
-	j whileTrue
-	fineWhileTrue2:
-	jal funzRic1
-	printChar('\n')
+	j whileFine
+	
 	fineWhileTrue:
 	li $v0, 10
 	syscall
