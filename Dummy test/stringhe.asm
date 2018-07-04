@@ -25,7 +25,6 @@ scorri_e_stampa:
 	fine_for:
 	jr $ra
 main:
-	sge $t4, 0, $zero
 	la $a0, str
 	jal scorri_e_stampa
 	

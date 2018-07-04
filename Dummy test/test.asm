@@ -1,5 +1,14 @@
+.data
+	str : .space 10
+
 .text
-	li $t0, 41
-	andi $a0, $t0, 1
-	li $v0, 1
+
+	li $v0, 8
+	li $a1 10
+	la $a0, str
 	syscall
+	
+	la $a0, str
+	li $v0, 4
+	syscall
+	
